@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useQuery } from 'react-query';
@@ -40,8 +41,10 @@ const CategoryDetail = () => {
   }, [categoryResponse?.data]);
 
   useEffect(() => {
-    if (productResponse?.data.products.length) {
+    if (productResponse?.data.products) {
       setProducts(productResponse?.data.products);
+    } else {
+      setProducts([]);
     }
   }, [productResponse?.data.products]);
 
@@ -79,14 +82,26 @@ const CategoryDetail = () => {
         // data={categoryResponse?.data.subCategories}
         data={subCategories}
       />
-      <FlatList
-        refreshing={!products.length}
-        numColumns={2}
-        contentContainerStyle={styles.products}
-        renderItem={productItem}
-        data={products}
-        keyExtractor={(item) => item.id}
-      />
+      {products.length ? (
+        <FlatList
+          refreshing={!products.length}
+          numColumns={2}
+          contentContainerStyle={styles.products}
+          renderItem={productItem}
+          data={products}
+          keyExtractor={(item) => item.id}
+        />
+      ) : (
+        <View
+          style={{
+            flexGrow: 1,
+            justifyContent: 'flex-start',
+            marginTop: -50,
+          }}
+        >
+          <Text> No products to show.</Text>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
