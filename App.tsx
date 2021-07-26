@@ -1,26 +1,34 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native';
-import Category from './src/layouts/Category';
 import CategoryDetail from './src/layouts/CategoryDetail';
+import CardButton from './src/components/CardButton';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import './src/services/server';
+import { LogBox } from 'react-native';
 
 const App = () => {
   const Stack = createStackNavigator();
+  const client = new QueryClient();
+  LogBox.ignoreLogs(['Setting a timer']);
 
   return (
-    <SafeAreaView>
+    <QueryClientProvider client={client}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Category">
-          <Stack.Screen name="Category" component={Category} />
+        <Stack.Navigator initialRouteName="CategoryDetail">
           <Stack.Screen
             name="CategoryDetail"
-            initialParams={{ itemId: 1 }}
             component={CategoryDetail}
+            initialParams={{ category: 'Personal Care' }}
+            options={({ route }) => ({
+              header: () => (
+                <CardButton type="banner" label={route?.params?.category} />
+              ),
+            })}
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </SafeAreaView>
+    </QueryClientProvider>
   );
 };
 

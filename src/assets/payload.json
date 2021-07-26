@@ -1,0 +1,132 @@
+{
+  "category": [
+    {
+      "id": "personalCare",
+      "name": "Personal Care",
+      "subCategories": [
+        {
+          "name": "Shampoo",
+          "id": "shampo--o",
+          "productIds": [123123,123123,123123]
+        },
+        {
+          "name": "Handwash",
+          "id": "hand-wash",
+          "productIds": [123123,123123,123123]
+        },
+        {
+          "name": "Toothpaste",
+          "id": "toothpaste",
+          "productIds": [123123,123123,123123]
+        },
+        {
+          "name": "Neck pillow",
+          "id": "neck-pillow",
+          "productIds": [123123,123123,123123]
+        },
+        {
+          "name": "Sanitizer",
+          "id": "sanitizer",
+          "productIds": [123123,123123,123123]
+        }
+      ]
+    },
+    {
+      "id": "professionalCare",
+      "name": "Professional Care",
+      "subCategories": [
+        {
+          "name": "Neck pillow",
+          "id": "neck-pillow",
+          "productIds": [123123,123123,123123]
+        },
+        {
+          "name": "Sanitizer",
+          "id": "sanitizer",
+          "productIds": [123123,123123,123123]
+        }
+      ]
+    }
+  ],
+  "product": [
+    {
+      "subCategoryId":"shampo--o",
+      "products": [
+        {
+          "id": "id-1",
+          "name": "Shampoo",
+          "brand":{
+            "name": "Stop the water while using me"
+          },
+          "price": 39.99
+        },
+        {
+          "id": "id-2",
+          "name": "Baby Shampoo",
+          "brand":{
+            "name": "Johnson & Johnson"
+          },
+          "price": 19.99
+        },
+        {
+          "id": "id-3",
+          "name": "Resurrection Handwash",
+          "brand":{
+            "name": "Aesop"
+          },
+          "price": 29.99
+        },
+        {
+          "id": "id-4",
+          "name": "Lifebuoy Menthol handwash",
+          "brand":{
+            "name": "Lifebuoy"
+          },
+          "price": 19.99
+        }
+      ]
+    },
+    {
+      "subCategoryId":"hand-wash",
+      "products":[
+        {
+          "id": "id-5",
+          "name": "Resurrection Handwash",
+          "brand":{
+            "name": "Aesop"
+          },
+          "price": 29.99
+        },
+        {
+          "id": "id-6",
+          "name": "Lifebuoy Menthol handwash",
+          "brand":{
+            "name": "Lifebuoy"
+          },
+          "price": 19.99
+        }
+      ]
+    },
+    {
+      "subCategoryId":"toothpaste",
+      "products":[
+        {
+          "id": "id-7",
+          "name": "Marvis Whitening mint tooth paste",
+          "brand":{
+            "name": "Marvis"
+          },
+          "price": 49.99
+        },
+        {
+          "id": "id-8",
+          "name": "Travis mint tooth paste",
+          "brand":{
+            "name": "Travis"
+          },
+          "price": 59.99
+        }
+      ]
+    }
+  ]
+}

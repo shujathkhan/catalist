@@ -1,4 +1,12 @@
 {
   "name": "catalist",
-  "displayName": "catalist"
+  "displayName": "catalist",
+  "expo": {
+    "name": "catalist",
+    "version": "1.0.0",
+    "ios": {
+      "bundleIdentifier": "com.shujath.tradiviz",
+      "buildNumber": "1.0.0"
+    }
+ }
 }
