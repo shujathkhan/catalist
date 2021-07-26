@@ -4,11 +4,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import CategoryDetail from './src/layouts/CategoryDetail';
 import CardButton from './src/components/CardButton';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import './src/services/server';
+import './src/server';
 import { LogBox } from 'react-native';
 
+type RootStackParamList = {
+  CategoryDetail: { category: string };
+};
+
 const App = () => {
-  const Stack = createStackNavigator();
+  const Stack = createStackNavigator<RootStackParamList>();
   const client = new QueryClient();
   LogBox.ignoreLogs(['Setting a timer']);
 

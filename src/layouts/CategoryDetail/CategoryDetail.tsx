@@ -7,7 +7,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { useQuery } from 'react-query';
 import CardButton from '../../components/CardButton';
 import ChipButton from '../../components/ChipButton';
-import { fetchCategoryData, fetchProductData } from '../../services';
+import { fetchCategoryData, fetchProductData } from '../../server/services';
 import { styles } from './style';
 
 const CategoryDetail = () => {
@@ -92,13 +92,7 @@ const CategoryDetail = () => {
           keyExtractor={(item) => item.id}
         />
       ) : (
-        <View
-          style={{
-            flexGrow: 1,
-            justifyContent: 'flex-start',
-            marginTop: -50,
-          }}
-        >
+        <View style={styles.fallbackProducts}>
           <Text> No products to show.</Text>
         </View>
       )}

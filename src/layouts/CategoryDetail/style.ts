@@ -17,4 +17,9 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: 'flex-start',
   },
+  fallbackProducts: {
+    flexGrow: 1,
+    justifyContent: 'flex-start',
+    marginTop: -50,
+  },
 });
