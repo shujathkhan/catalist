@@ -58,7 +58,7 @@
           "brand":{
             "name": "Stop the water while using me"
           },
-          "price": 39.99
+          "price": "39.99 €"
         },
         {
           "id": "id-2",
@@ -66,7 +66,7 @@
           "brand":{
             "name": "Johnson & Johnson"
           },
-          "price": 19.99
+          "price": "19.99 €"
         },
         {
           "id": "id-3",
@@ -74,7 +74,7 @@
           "brand":{
             "name": "Aesop"
           },
-          "price": 29.99
+          "price": "29.99 €"
         },
         {
           "id": "id-4",
@@ -82,7 +82,7 @@
           "brand":{
             "name": "Lifebuoy"
           },
-          "price": 19.99
+          "price": "19.99 €"
         }
       ]
     },
@@ -95,7 +95,7 @@
           "brand":{
             "name": "Aesop"
           },
-          "price": 29.99
+          "price": "29.99 €"
         },
         {
           "id": "id-6",
@@ -103,7 +103,7 @@
           "brand":{
             "name": "Lifebuoy"
           },
-          "price": 19.99
+          "price": "19.99 €"
         }
       ]
     },
@@ -116,7 +116,7 @@
           "brand":{
             "name": "Marvis"
           },
-          "price": 49.99
+          "price": "49.99 €"
         },
         {
           "id": "id-8",
@@ -124,7 +124,7 @@
           "brand":{
             "name": "Travis"
           },
-          "price": 59.99
+          "price": "59.99 €"
         }
       ]
     }

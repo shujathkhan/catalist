@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   subCategories: {
+    marginTop: -10,
     minHeight: 100,
   },
   products: {
