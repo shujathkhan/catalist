@@ -1,29 +1,35 @@
-import { createServer } from 'miragejs';
-import { AnyFactories, AnyModels } from 'miragejs/-types';
+import axios, { AxiosRequestConfig } from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 import payload from '../assets/payload.json';
 
-export default createServer<AnyModels, AnyFactories>({
-  routes() {
-    this.namespace = 'api';
+const mock = new MockAdapter(axios);
 
-    this.get('/category/:id', (schema, request) => {
-      const categoryId = request.params.id;
-      return payload.category.find((item) => item.id === categoryId);
-    });
+function parseQueryString(config: AxiosRequestConfig) {
+  const queryString = config.url?.replace(/.*\?/, '');
 
-    this.get('/product/:subCategoryId', (schema, request) => {
-      const subCategoryId = request.params.subCategoryId;
-      if (subCategoryId === 'allProducts') {
-        return {
-          products: payload.product
-            .map((subCategory) => subCategory.products)
-            .flat(),
-        };
-      } else {
-        return payload.product.find(
-          (item) => item.subCategoryId === subCategoryId
-        );
-      }
-    });
-  },
+  if (queryString === config.url || !queryString) {
+    return null;
+  }
+  return JSON.parse('{"' + queryString.replace(/&/g, '","').replace(/[=]/g, '":"') + '"}', function (key, value) {
+    return key === '' ? value : decodeURIComponent(value);
+  });
+}
+
+mock.onGet(/\/api\/category\/?.*/).reply((config) => {
+  const { categoryId } = parseQueryString(config);
+  return [202, payload.category.find((item: any) => item.id === categoryId)];
+});
+
+mock.onGet(/\/api\/product\/?.*/).reply((config) => {
+  const { subCategoryId } = parseQueryString(config);
+  if (subCategoryId === 'allProducts') {
+    return [
+      202,
+      {
+        products: payload.product.map((subCategory: any) => subCategory.products).flat(),
+      },
+    ];
+  } else {
+    return [202, payload.product.find((item: any) => item.subCategoryId === subCategoryId)];
+  }
 });

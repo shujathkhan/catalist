@@ -9,23 +9,18 @@ import CardButton from '../../components/CardButton';
 import ChipButton from '../../components/ChipButton';
 import { fetchCategoryData, fetchProductData } from '../../server/services';
 import { styles } from './style';
+import { ProductType, SubCategoryType } from './types';
 
 const CategoryDetail = () => {
-  const [products, setProducts] = useState<any>([]);
-  const [subCategories, setSubCategories] = useState<Array<any>>([]);
+  const [products, setProducts] = useState<Array<ProductType>>([]);
+  const [subCategories, setSubCategories] = useState<Array<SubCategoryType>>([]);
   const [activeSubCategoryId, setActiveSubCategoryId] = useState('allProducts');
 
-  const { data: categoryResponse } = useQuery(
-    'categoryData',
-    fetchCategoryData
-  );
-  const { data: productResponse } = useQuery(
-    ['productData', activeSubCategoryId],
-    () => fetchProductData(activeSubCategoryId),
-    {
-      enabled: !!activeSubCategoryId,
-    }
-  );
+  const { data: categoryResponse } = useQuery('categoryData', fetchCategoryData);
+
+  const { data: productResponse } = useQuery(['productData', activeSubCategoryId], () => fetchProductData(activeSubCategoryId), {
+    enabled: !!activeSubCategoryId,
+  });
 
   useEffect(() => {
     const allProductsChip = {
@@ -33,12 +28,10 @@ const CategoryDetail = () => {
       id: 'allProducts',
       productIds: [123123, 123123, 123123],
     };
-    categoryResponse?.data &&
-      setSubCategories([
-        allProductsChip,
-        ...categoryResponse.data.subCategories,
-      ]);
-  }, [categoryResponse?.data]);
+    console.log(categoryResponse);
+
+    categoryResponse?.data && setSubCategories([allProductsChip, ...categoryResponse.data.subCategories]);
+  }, [categoryResponse]);
 
   useEffect(() => {
     if (productResponse?.data.products) {
@@ -52,7 +45,7 @@ const CategoryDetail = () => {
     setActiveSubCategoryId(subCategoryId);
   };
 
-  const productItem = (props: { item: any; index: number }) => {
+  const productItem = (props: { item: ProductType; index: number }) => {
     const imageIndex = props.index + 500;
     return (
       <CardButton
@@ -70,7 +63,7 @@ const CategoryDetail = () => {
       <FlatList
         horizontal
         contentContainerStyle={styles.subCategories}
-        renderItem={(props: { item: any; index: number }) => (
+        renderItem={(props: { item: SubCategoryType; index: number }) => (
           <ChipButton
             label={props.item.name}
             key={props.item.name + props.index}
@@ -79,7 +72,6 @@ const CategoryDetail = () => {
           />
         )}
         keyExtractor={(item) => item.name}
-        // data={categoryResponse?.data.subCategories}
         data={subCategories}
       />
       {products.length ? (

@@ -25,9 +25,7 @@ const App = () => {
             component={CategoryDetail}
             initialParams={{ category: 'Personal Care' }}
             options={({ route }) => ({
-              header: () => (
-                <CardButton type="banner" label={route?.params?.category} />
-              ),
+              header: () => <CardButton type="banner" label={route?.params?.category} />,
             })}
           />
         </Stack.Navigator>

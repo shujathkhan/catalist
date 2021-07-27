@@ -16,11 +16,7 @@ const ChipButton = (props: ChipButtonType) => {
   const textColor = props.isActive ? 'white' : 'black';
 
   return (
-    <TouchableOpacity
-      onPress={props.onPress}
-      activeOpacity={0.85}
-      style={styles.touchableContainer}
-    >
+    <TouchableOpacity onPress={props.onPress} activeOpacity={0.85} style={styles.touchableContainer}>
       <View
         style={{
           ...styles.container,

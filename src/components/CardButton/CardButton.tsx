@@ -24,11 +24,7 @@ const CardButton = (props: CardButtonType) => {
     >
       <ImageBackground
         source={{
-          uri: `https://picsum.photos/${
-            props.type === 'banner'
-              ? '400/200'
-              : `/id/${props.imageIndex}/150/150`
-          }`,
+          uri: `https://picsum.photos/${props.type === 'banner' ? '400/200' : `/id/${props.imageIndex}/150/150`}`,
         }}
         resizeMode="contain"
         imageStyle={cardStyles.imageStyle}
@@ -37,17 +33,9 @@ const CardButton = (props: CardButtonType) => {
           ...(props.type === 'card' && { height: 150 }),
         }}
       >
-        {props.type === 'banner' && (
-          <Text style={cardStyles.text}>{props.label}</Text>
-        )}
+        {props.type === 'banner' && <Text style={cardStyles.text}>{props.label}</Text>}
       </ImageBackground>
-      {props.type === 'card' && (
-        <CardContent
-          label={props.label}
-          description={props.description}
-          price={props.price}
-        />
-      )}
+      {props.type === 'card' && <CardContent label={props.label} description={props.description} price={props.price} />}
     </TouchableOpacity>
   );
 };
