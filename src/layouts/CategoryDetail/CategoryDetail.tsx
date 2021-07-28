@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -16,11 +17,15 @@ const CategoryDetail = () => {
   const [subCategories, setSubCategories] = useState<Array<SubCategoryType>>([]);
   const [activeSubCategoryId, setActiveSubCategoryId] = useState('allProducts');
 
-  const { data: categoryResponse } = useQuery('categoryData', fetchCategoryData);
+  const { data: categoryResponse } = useQuery<AxiosResponse<any>>('categoryData', fetchCategoryData);
 
-  const { data: productResponse } = useQuery(['productData', activeSubCategoryId], () => fetchProductData(activeSubCategoryId), {
-    enabled: !!activeSubCategoryId,
-  });
+  const { data: productResponse } = useQuery<AxiosResponse<any>>(
+    ['productData', activeSubCategoryId],
+    () => fetchProductData(activeSubCategoryId),
+    {
+      enabled: !!activeSubCategoryId,
+    }
+  );
 
   useEffect(() => {
     const allProductsChip = {
@@ -28,18 +33,17 @@ const CategoryDetail = () => {
       id: 'allProducts',
       productIds: [123123, 123123, 123123],
     };
-    console.log(categoryResponse);
 
     categoryResponse?.data && setSubCategories([allProductsChip, ...categoryResponse.data.subCategories]);
   }, [categoryResponse]);
 
   useEffect(() => {
     if (productResponse?.data.products) {
-      setProducts(productResponse?.data.products);
+      setProducts(productResponse?.data?.products);
     } else {
       setProducts([]);
     }
-  }, [productResponse?.data.products]);
+  }, [productResponse?.data]);
 
   const handleSubCategory = (subCategoryId: string) => {
     setActiveSubCategoryId(subCategoryId);
